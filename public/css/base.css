@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+    background: rgb(61, 61, 61);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.body_container{
+    padding: 1% 10%;
+}
+.nav_container{
+    height: 10vh;
+    background: rgb(29, 29, 29);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    font-weight: bold;
+    font-size: 2vw;
+}

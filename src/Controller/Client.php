@@ -8,7 +8,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class Client
 {
-
+    /**
+     * @Route("/client/prenom/{prenom}", name="api_client", methods={"GET", "POST"}, requirements={"prenom"="([a-zA-Z]+)(-[a-zA-Z]+)*"})
+     */
     public function info(string $prenom): Response
     {
         // go to  http://127.0.0.1:8000/client/prenom/Bob-Mark-Toto
