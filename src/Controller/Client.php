@@ -9,6 +9,8 @@ class Client
 {
     public function info(string $prenom): Response
     {
+        // go to  http://127.0.0.1:8000/client/prenom/Bob-Mark-Toto
+        
         $refarray = array(
             "Bob" => "Dupond",
             "Mark" => "Lepetit",

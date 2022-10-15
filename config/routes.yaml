@@ -1,3 +1,8 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+api_client:
+    path:       /client/prenom/{prenom}
+    controller: App\Controller\Client::info
+    methods:    GET|HEAD
