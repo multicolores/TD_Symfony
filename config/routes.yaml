@@ -3,8 +3,8 @@
 #    controller: App\Controller\DefaultController::index
 
 # api_client:
-#     path:       /client/prenom/{prenom}
-#     controller: App\Controller\Client::info
-#     methods:    GET|HEAD
-#     # requirements:
-#     #   prenom: '([a-zA-Z]+)(-[a-zA-Z]+)*'
+#   path: /client/prenom/{prenom}
+#   controller: App\Controller\Client::info
+#   methods: GET|HEAD
+#   requirements:
+#     prenom: "([a-zA-Z]+)(-[a-zA-Z]+)*"
