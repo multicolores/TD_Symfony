@@ -1,0 +1,9 @@
+when@dev:
+    _errors:
+        resource: '@FrameworkBundle/Resources/config/routing/errors.xml'
+        prefix: /_error
+
+api_client:
+    path:       /client/prenom/{prenom}
+    controller: App\Controller\Client::info
+    methods:    GET|HEAD
