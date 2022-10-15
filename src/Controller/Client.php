@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -7,10 +8,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class Client
 {
+    /**
+     * @Route("/client/prenom/{prenom}", name="api_client", methods={"GET", "POST"}, requirements={"prenom"="([a-zA-Z]+)(-[a-zA-Z]+)*"})
+     */
     public function info(string $prenom): Response
     {
         // go to  http://127.0.0.1:8000/client/prenom/Bob-Mark-Toto
-        
+
         $refarray = array(
             "Bob" => "Dupond",
             "Mark" => "Lepetit",
@@ -21,16 +25,15 @@ class Client
         $prenom = explode("-", $prenom);
         foreach ($refarray as $corresponding_prenom => $corresponding_nom) {
             foreach ($prenom as $key => $value) {
-                if($corresponding_prenom == $value) {
+                if ($corresponding_prenom == $value) {
                     $stringOfnames .= " ";
                     $stringOfnames .= $corresponding_nom;
                 }
             }
+        }
 
-    }
-        
 
-        if($stringOfnames)
+        if ($stringOfnames)
             return new Response($stringOfnames);
         else
             return new Response("Aucun nom correspondent");
