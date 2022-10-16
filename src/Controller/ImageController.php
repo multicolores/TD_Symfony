@@ -18,7 +18,9 @@ class ImageController extends AbstractController
         $errorUnknowImg = false;
         //  http://127.0.0.1:8000/img/home/chat
         //  http://127.0.0.1:8000/img/home/chien
-        if (!file_exists(__DIR__."/../../images/$imgName.jpeg")){
+
+        $imgName .= ".jpeg";
+        if (!file_exists(__DIR__."/../../images/$imgName")){
             $errorUnknowImg = true;
         }
         return $this->render('/img/home.html.twig', [
@@ -33,7 +35,7 @@ class ImageController extends AbstractController
      */
     public function affiche(string $imgName): Response
     {
-            return $this->file(__DIR__."/../../images/$imgName.jpeg");
+            return $this->file(__DIR__."/../../images/$imgName");
     }
 
     /**
@@ -42,10 +44,18 @@ class ImageController extends AbstractController
     public function menu(): Response
     {
         // go to  http://127.0.0.1:8000/img/menu
-        //ici peut etre pas garder la possibiliter que se sois une route ( je pense bien ouais )
+        //ici peut etre pas garder la possibiliter que se sois une route ( je pense bien ouais il faut afficher grace a render dans le twig)
+        
+        $imagesFiles = scandir(__DIR__."/../../images/");
+        foreach ($imagesFiles as $key => $value) {
+            if(is_dir($value) || $value == ".DS_Store" ){
+                unset($imagesFiles[$key]);
+            }
+        }
+        // var_dump($imagesFiles);
 
         return $this->render('/img/menu.html.twig', [
-            'title' => 'Site image'
+            'imagesFiles' => $imagesFiles
         ]);
     }
 }

@@ -1,10 +1,13 @@
-{% extends "base.html.twig" %}
+<link href="{{ asset('css/ImgMenu.css') }}" rel="stylesheet"/>
 
 {% block body %}
 	<div class="menuImages_container">
-		<span>imagename</span>
-		<span>imagename</span>
-		<span>imagename</span>
-		<span>imagename</span>
+		<span>Menu</span>
+		{% for item in imagesFiles %}
+			<a href={{"/img/data/#{item}"}}>
+				{{item}}
+			</a>
+		{% endfor %}
 	</div>
+
 {% endblock %}
