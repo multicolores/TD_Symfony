@@ -1,5 +1,12 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
+
 	<h1>{{title}}</h1>
+	{% if error %}
+		<p>Erreur : votre image n'existe pas</p>
+	{% else %}
+		<img src="{{ url('img_affiche', {imgName:imgName}) }}" alt="image">
+	{% endif %}
+
 {% endblock %}
