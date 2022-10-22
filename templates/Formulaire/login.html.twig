@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<link href="{{ asset('css/Form.css') }}" rel="stylesheet"/>
+
+<h1>Formulaire TD4</h1>
+
+{{ form(loginForm) }}
+
+{% if erreur %}
+    <p>Attention les mots de passes renseignés ne sont pas identiques ! </p>
+{% endif %}
+
+
+{% endblock %}
