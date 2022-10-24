@@ -8,8 +8,7 @@
 {{ form(loginForm) }}
 
 {% if erreur %}
-    <p>Attention les mots de passes renseignés ne sont pas identiques ! </p>
+    <p>{{errorMessage}} </p>
 {% endif %}
-
 
 {% endblock %}

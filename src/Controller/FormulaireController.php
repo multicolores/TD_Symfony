@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class FormulaireController extends AbstractController
 {
+
     /**
      * @Route("/TD4/login", name="user_login", methods={"GET", "POST"})
      */
@@ -32,6 +33,7 @@ class FormulaireController extends AbstractController
         // $local = $request->getLocale();
         // dump($local);
         $errorState = false;
+        $errorMessage = "";
         $form = $this->createFormBuilder($user)
             ->add('email', TextType::class)
             ->add('password', TextType::class, [
@@ -46,20 +48,36 @@ class FormulaireController extends AbstractController
             ->add('save', SubmitType::class, ['label' => 'Create User'])
             ->getForm();
 
-            
+
+        function checkValid($email, $password)
+        {
+            if ($email == "flo@gmail.com" && $password == "azerty123") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
             if ($form["password"]->getData() === $form["password2"]->getData()) {
-                return $this->redirectToRoute('login_success');
+                if (checkValid($form["email"]->getData(), $form["password"]->getData())) {
+                    return $this->redirectToRoute('login_success');
+                } else {
+                    $errorState = true;
+                    $errorMessage = "Mot de passe ou email renseigné invalid";
+                }
             } else {
                 $errorState = true;
+                $errorMessage = "Attention les mots de passes renseignés ne sont pas identiques !";
             }
         }
 
         return $this->render('/Formulaire/login.html.twig', [
             'loginForm' => $form->createView(),
-            'erreur' => $errorState
+            'erreur' => $errorState,
+            'errorMessage' => $errorMessage
         ]);
     }
 
