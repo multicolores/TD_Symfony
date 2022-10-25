@@ -5,6 +5,15 @@ doctrine:
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)
         #server_version: '13'
+        # default_connection: default
+        # connections:
+        #     default:
+        #         dbname:         mysql
+        #         user:           root
+        #         password:       root
+        #         host:           172.17.0.2
+        #         driver:         pdo_mysql
+        #         server_version: '8.0.31' # in case you are using mysql 5.5
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
