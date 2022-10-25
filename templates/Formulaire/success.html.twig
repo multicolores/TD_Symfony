@@ -1,7 +1,12 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
+<h1>Utilisateurs crées :</h1>
 
-<h1>Utilisateur connecté</h1>
+{% for user in users %}
+    <p>email: {{user.email}}</p>
+    <p>password: {{user.password}}</p>
+    <hr>
+{% endfor %}
 
 {% endblock %}
