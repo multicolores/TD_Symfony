@@ -44,7 +44,6 @@ class ImageController extends AbstractController
     public function menu(): Response
     {
         // go to  http://127.0.0.1:8000/img/menu
-        //ici peut etre pas garder la possibiliter que se sois une route ( je pense bien ouais il faut afficher grace a render dans le twig)
         
         $imagesFiles = scandir(__DIR__."/../../images/");
         foreach ($imagesFiles as $key => $value) {

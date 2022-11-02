@@ -38,6 +38,17 @@ class Client
         else
             return new Response("Aucun nom correspondent");
     }
+
+
+     /**
+     * @Route("/clients", name="clients")
+     */
+    public function clients(string $prenom): Response
+    {
+        // go to  http://127.0.0.1:8000/clients
+
+        return new Response("Vous avez le droit d'accéder à cette page car c'est la bonne heure !");
+    }
 }
 
 
