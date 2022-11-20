@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class FormulaireController extends AbstractController
 {
@@ -18,18 +19,14 @@ class FormulaireController extends AbstractController
     /**
      * @Route("/TD4/login", name="user_login", methods={"GET", "POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, TranslatorInterface $translator): Response
     {
 
         // http://localhost:8000/TD4/login
         // changer dans translation.yaml default en fr/en
         $user = new User();
-        $message = '';
-        if ($request->getLocale() == 'fr') {
-            $message = 'Le mot de passe doit avoir au minimum 8 charactère et au moins une lettre et un nombre';
-        } else {
-            $message = 'Password must have a minimum of eight characters, at least one letter and one number';
-        }
+        $message = $translator->trans('Error', [], 'message');
+
         // $local = $request->getLocale();
         // dump($local);
         $errorState = false;
