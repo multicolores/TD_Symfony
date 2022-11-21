@@ -38,6 +38,16 @@ class Client
         else
             return new Response("Aucun nom correspondent");
     }
+
+    /**
+     * @Route("/client", name="client")
+     */
+    public function clientListener(): Response
+    {
+        // go to  http://127.0.0.1:8000/client
+
+        return new Response("yes le client");
+    }
 }
 
 
