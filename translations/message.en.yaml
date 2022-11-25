@@ -1,1 +1,3 @@
 Error: Password must have a minimum of eight characters, at least one letter and one number
+ErrorSamePassword: Please note that the passwords entered must be identical!
+InvalidPassOrEmail: Invalid password or email entered

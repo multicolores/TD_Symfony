@@ -1,1 +1,3 @@
 Error: Le mot de passe doit avoir au minimum 8 charactère et au moins une lettre et un nombre
+ErrorSamePassword: Attention les mots de passes renseignés ne sont pas identiques !
+InvalidPassOrEmail: Mot de passe ou email renseigné invalid
