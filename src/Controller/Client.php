@@ -40,7 +40,7 @@ class Client
     }
 
     /**
-     * @Route("/client", name="client")
+     * @Route("/client", name="client", options={"ouverture":"8-17"})
      */
     public function clientListener(): Response
     {
