@@ -1,5 +1,6 @@
 form div{
     padding-bottom: 20px;
+    width: 300px;
 }
 label{
     padding: 10px 0;
@@ -8,11 +9,14 @@ label{
 }
 ul, li {
     color: rgba(235, 49, 49, 0.802);
+    width: 200%;
 }
 input{
-    padding: 3px 7px;
+    padding: 10px 7px;
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid rgba(255, 255, 255, 0.692);
+    border-radius: 4px;
+    width: 100%;
     color: white;
 }
 button {
