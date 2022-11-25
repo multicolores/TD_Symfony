@@ -5,8 +5,10 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
-class Client
+class Client extends AbstractController
 {
     /**
      * @Route("/client/prenom/{prenom}", name="api_client", methods={"GET", "POST"}, requirements={"prenom"="([a-zA-Z]+)(-[a-zA-Z]+)*"})
@@ -40,13 +42,12 @@ class Client
     }
 
     /**
-     * @Route("/client", name="client", options={"ouverture":"8-17"})
+     * @Route("/client{ouverture?8-17}", name="client", options={"ouverture":"8-17"})
      */
     public function clientListener(): Response
     {
         // go to  http://127.0.0.1:8000/client
-
-        return new Response("yes le client");
+        return $this->render('/Formulaire/success.html.twig');
     }
 }
 

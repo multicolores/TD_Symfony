@@ -35,119 +35,119 @@ class Kernel extends BaseKernel
         $routes->import("../config/{routes}.$extensions");
     }
 
-    public function boot()
-    {
-        Parent::boot();
-        /** @var EventDispatcher $dispatcher */
-        $dispatcher = $this->getContainer()->get('event_dispatcher');
-        $dispatcher->addListener(
-            'kernel.controller',
-            function (ControllerEvent $event) {
+    // public function boot()
+    // {
+    //     Parent::boot();
+    //     /** @var EventDispatcher $dispatcher */
+    //     $dispatcher = $this->getContainer()->get('event_dispatcher');
+    //     $dispatcher->addListener(
+    //         'kernel.controller',
+    //         function (ControllerEvent $event) {
 
-                // $response = new Response();
+    //             // $response = new Response();
 
-                // $response->setStatusCode(Response::HTTP_FORBIDDEN);
-
-
-                // $response->headers->set('Content-Type', 'text/html');
-                // $controller = $this->getContainer()->get('App\Controller\Client');
-                // $event->setController([$controller, 'info'], ['prenom'=>'yes']);
-
-                // $request = $this->container->get('request');
-                // // $routeName = $request->get('_route');
+    //             // $response->setStatusCode(Response::HTTP_FORBIDDEN);
 
 
-                $request = $event->getRequest();
-                // var_dump($request->get('_route'));
-                // var_dump($request->attributes->get('_route_params'));
-                // var_dump($request->attributes->all());
+    //             // $response->headers->set('Content-Type', 'text/html');
+    //             // $controller = $this->getContainer()->get('App\Controller\Client');
+    //             // $event->setController([$controller, 'info'], ['prenom'=>'yes']);
 
-                $value = "6-17";
-                $valuesArray = explode("-", $value);
-                $valuesArray[0] .= ":00:00";
-                $valuesArray[1] .= ":00:00";
+    //             // $request = $this->container->get('request');
+    //             // // $routeName = $request->get('_route');
 
-                $current_time = date("H:i:s");
-                $current_time = DateTime::createFromFormat('H:i:s', $current_time);
-                $startDate = DateTime::createFromFormat('H:i:s', $valuesArray[0]);
-                $endDate = DateTime::createFromFormat('H:i:s', $valuesArray[1]);
 
-                if ($current_time > $startDate && $current_time < $endDate) {
-                    var_dump("Authorisé");
-                } else {
-                    var_dump("Le site est fermé");
-                }
+    //             $request = $event->getRequest();
+    //             // var_dump($request->get('_route'));
+    //             // var_dump($request->attributes->get('_route_params'));
+    //             // var_dump($request->attributes->all());
+
+    //             $value = "6-17";
+    //             $valuesArray = explode("-", $value);
+    //             $valuesArray[0] .= ":00:00";
+    //             $valuesArray[1] .= ":00:00";
+
+    //             $current_time = date("H:i:s");
+    //             $current_time = DateTime::createFromFormat('H:i:s', $current_time);
+    //             $startDate = DateTime::createFromFormat('H:i:s', $valuesArray[0]);
+    //             $endDate = DateTime::createFromFormat('H:i:s', $valuesArray[1]);
+
+    //             if ($current_time > $startDate && $current_time < $endDate) {
+    //                 var_dump("Authorisé");
+    //             } else {
+    //                 var_dump("Le site est fermé");
+    //             }
                 
-                // $route = $this->container->get('router')->getRouteCollection()->get(
-                //     $request->attributes->get('_route')
-                // );
-                // var_dump($route);
+    //             // $route = $this->container->get('router')->getRouteCollection()->get(
+    //             //     $request->attributes->get('_route')
+    //             // );
+    //             // var_dump($route);
 
-                // $options = $route->getOptions();
-                // var_dump($options['response_type']);
-                // var_dump($options);
+    //             // $options = $route->getOptions();
+    //             // var_dump($options['response_type']);
+    //             // var_dump($options);
 
-                // // $request = $event->getRequest();
-                // // $route = $this->router->getRouteCollection()->get(
-                // //     $request->attributes->get('_route')
-                // // );
-                // // $options = $route->getOptions();
-                // // $options = $request->attributes->get('_route');
-                // // var_dump($request->attributes);
+    //             // // $request = $event->getRequest();
+    //             // // $route = $this->router->getRouteCollection()->get(
+    //             // //     $request->attributes->get('_route')
+    //             // // );
+    //             // // $options = $route->getOptions();
+    //             // // $options = $request->attributes->get('_route');
+    //             // // var_dump($request->attributes);
 
-                // // $options = $route->getOptions();
-
-
-
-                // $controller = $this->getContainer()->get('App\Controller\Client');
-                // $event->setController([$controller, 'clients']);
-            },
-            128
-        );
+    //             // // $options = $route->getOptions();
 
 
-        // Parent::boot();
-        // /** @var EventDispatcher $dispatcher */
-        // $dispatcher = $this->getContainer()->get('event_dispatcher');
-        // $dispatcher->addListener(
-        //     'kernel.controller',
-        //     function (ControllerEvent $event) {
-        //         // $response = new Response();
 
-        //         // $response->setStatusCode(Response::HTTP_FORBIDDEN);
+    //             // $controller = $this->getContainer()->get('App\Controller\Client');
+    //             // $event->setController([$controller, 'clients']);
+    //         },
+    //         128
+    //     );
 
 
-        //         // $response->headers->set('Content-Type', 'text/html');
-        //         // $controller = $this->getContainer()->get('App\Controller\Client');
-        //         // $event->setController([$controller, 'info'], ['prenom'=>'yes']);
+    //     // Parent::boot();
+    //     // /** @var EventDispatcher $dispatcher */
+    //     // $dispatcher = $this->getContainer()->get('event_dispatcher');
+    //     // $dispatcher->addListener(
+    //     //     'kernel.controller',
+    //     //     function (ControllerEvent $event) {
+    //     //         // $response = new Response();
 
-        //         // $request = $this->container->get('request');
-        //         // // $routeName = $request->get('_route');
+    //     //         // $response->setStatusCode(Response::HTTP_FORBIDDEN);
 
-        //         // // $request = $event->getRequest();
-        //         // $route = $this->router->getRouteCollection()->get(
-        //         //     $request->attributes->get('_route')
-        //         // );
 
-        //         // $options = $route->getOptions();
+    //     //         // $response->headers->set('Content-Type', 'text/html');
+    //     //         // $controller = $this->getContainer()->get('App\Controller\Client');
+    //     //         // $event->setController([$controller, 'info'], ['prenom'=>'yes']);
 
-        //         // // $request = $event->getRequest();
-        //         // // $route = $this->router->getRouteCollection()->get(
-        //         // //     $request->attributes->get('_route')
-        //         // // );
-        //         // // $options = $route->getOptions();
-        //         // // $options = $request->attributes->get('_route');
-        //         // // var_dump($request->attributes);
+    //     //         // $request = $this->container->get('request');
+    //     //         // // $routeName = $request->get('_route');
 
-        //         // // $options = $route->getOptions();
+    //     //         // // $request = $event->getRequest();
+    //     //         // $route = $this->router->getRouteCollection()->get(
+    //     //         //     $request->attributes->get('_route')
+    //     //         // );
 
-        //         $controller = $this->getContainer()->get('App\Controller\Client');
-        //         $event->setController([$controller, 'clients']);
-        //         $request = $event->getRequest();
-        //         // $test = $request->attributes->getRouteCollection()->get($request->attributes->get('_route'));
-        //         var_dump($request->getBasePath());
-        //     },
-        //     128
-        // );
-    }
+    //     //         // $options = $route->getOptions();
+
+    //     //         // // $request = $event->getRequest();
+    //     //         // // $route = $this->router->getRouteCollection()->get(
+    //     //         // //     $request->attributes->get('_route')
+    //     //         // // );
+    //     //         // // $options = $route->getOptions();
+    //     //         // // $options = $request->attributes->get('_route');
+    //     //         // // var_dump($request->attributes);
+
+    //     //         // // $options = $route->getOptions();
+
+    //     //         $controller = $this->getContainer()->get('App\Controller\Client');
+    //     //         $event->setController([$controller, 'clients']);
+    //     //         $request = $event->getRequest();
+    //     //         // $test = $request->attributes->getRouteCollection()->get($request->attributes->get('_route'));
+    //     //         var_dump($request->getBasePath());
+    //     //     },
+    //     //     128
+    //     // );
+    // }
 }

@@ -13,9 +13,9 @@ services:
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
-    App\EventListener\RequestListener:
-        tags:
-            - { name: kernel.event_listener, event: kernel.request }
+    # App\EventListener\RequestListener:
+    #     tags:
+    #         - { name: kernel.event_listener, event: kernel.controller }
         # tags:
         #     - { name: kernel.event_listener, event: kernel.request }
         #     - { name: kernel.event_listener, event: kernel.controller }
@@ -35,6 +35,9 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+    App\EventListener\RequestListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller }
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

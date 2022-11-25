@@ -2,65 +2,56 @@
 
 namespace App\EventListener;
 
+use DateTime;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
+use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
 
 
-class RequestListener
+class RequestListener extends AbstractController
 {
     // Store the absolute path of the project injected through the service
     private $projectDir;
 
     /* @var $twig \Twig\Environment */
     private $twig;
+    private $router;
+    private $request_stack;
 
-    public function __construct(Environment $twigEnvironment, $projectDir)
+    public function __construct(Environment $twigEnvironment, RouterInterface $router, RequestStack $request_stack)
     {
-        $this->projectDir = $projectDir;
         $this->twig = $twigEnvironment;
+        $this->router = $router;
+       $this->request_stack = $request_stack;
     }
 
-    /**
-     * Run the verification of the users country on every request.
-     * 
-     * @param RequestEvent $event
-     * @return type
-     */
-    public function onKernelRequest(RequestEvent $event)
+
+
+
+    public function onKernelController(ControllerEvent $event)
     {
-        var_dump("aaa");
-        if (!$event->isMasterRequest()) {
-            // don't do anything if it's not the master request
-        var_dump("oo");
-        return;
-        }
-        $url = $this->router->generate('user_login');
-        $response = new RedirectResponse($url);
-        $event->setResponse($response);
 
-        // $this->RestrictAccessOnDisallowedCountries($event);
+        // var_dump($this->request);
+
+        $route = $this->request_stack->getCurrentRequest()->get('_route_params');
+
+        // var_dump($route);
+        if (isset($route["ouverture"])){
+            $heure = explode("-", $route['ouverture']);
+            // var_dump(date('G'));
+            if (!(date('G') > $heure[0]) || !(date('G') < $heure[1])) {
+
+                   $event->stopPropagation();
+                   $event->setController(function () {
+                       return $this->render('/TD3/not-authorize.html.twig');
+                   });
+               }
+           }
     }
 
-    private function RestrictAccessOnDisallowedCountries(RequestEvent $event)
-    {
-        /* @var $request \Symfony\Component\HttpFoundation\Request */
-        $request = $event->getRequest();
-
-        // If the obtained iso code matches with one of the blacklisted countries, block the access
-        // rendering a custom page
-        $response = new Response();
-
-        // $response->setStatusCode(Response::HTTP_FORBIDDEN);
-
-        // Render some twig view, in our case we will render the blocked.html.twig file
-        $response->setContent($this->twig->render("base.html.twig"));
-
-        // // Return an HTML file
-        $response->headers->set('Content-Type', 'text/html');
-        var_dump("oeoe");
-        // // Send response
-        $event->setResponse($response);
-    }
 }
